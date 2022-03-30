@@ -1,7 +1,10 @@
+using books.Data;
+using books.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,9 +19,11 @@ namespace books
 {
     public class Startup
     {
+        public string ConnectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration.GetConnectionString("DefaultConnectionString");
         }
 
         public IConfiguration Configuration { get; }
@@ -32,6 +37,8 @@ namespace books
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "books", Version = "v1" });
             });
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
+            services.AddTransient<BooksService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +61,8 @@ namespace books
             {
                 endpoints.MapControllers();
             });
+
+            AppDbInitialer.Seed(app);
         }
     }
 }
