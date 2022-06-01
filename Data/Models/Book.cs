@@ -11,7 +11,6 @@ namespace books.Data.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Genre { get; set; }
-        public string Author { get; set; }
         public bool IsRead { get; set; }
         public DateTime? DateRead { get; set; }
         public int? Rate { get; set; }
@@ -19,7 +18,8 @@ namespace books.Data.Models
         public DateTime DateAdded { get; set; }
 
         // Navigation Properties
-        public int PubliherId { get; set; }
+        public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
+        public List<Book_author> Book_Authors { get; set; }
     }
 }

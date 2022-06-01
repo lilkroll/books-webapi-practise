@@ -39,6 +39,8 @@ namespace books
             });
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConnectionString));
             services.AddTransient<BooksService>();
+            services.AddTransient<AuthorsService>();
+            services.AddTransient<PublisherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +64,7 @@ namespace books
                 endpoints.MapControllers();
             });
 
-            AppDbInitialer.Seed(app);
+            //AppDbInitialer.Seed(app);
         }
     }
 }

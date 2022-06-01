@@ -49,7 +49,7 @@ namespace books.Controllers
         [HttpDelete("delete-book-by-id/{id}")]
         public IActionResult DeleteBookById(int id)
         {
-            DeleteBookById(id);
+            _booksService.DeleteBookById(id);
             return Ok();
         }
     }

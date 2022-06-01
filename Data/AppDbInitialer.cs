@@ -25,7 +25,6 @@ namespace books.Data
                         DateRead = DateTime.Now.AddDays(-10),
                         Rate = 4,
                         Genre = "Biography",
-                        Author ="zxclord",
                         CoverUrl = "",
                         DateAdded = DateTime.Now
                     },
@@ -37,12 +36,11 @@ namespace books.Data
                         DateRead = DateTime.Now.AddDays(-10),
                         Rate = 4,
                         Genre = "Biography",
-                        Author = "zxclord",
                         CoverUrl = "",
                         DateAdded = DateTime.Now
                     });
 
-                    context.SaveChanges();
+                    context.SaveChanges(); 
                 }
             }
         }
